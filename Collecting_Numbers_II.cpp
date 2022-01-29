@@ -119,8 +119,8 @@ int main()
 }
 void solve()
 {
-    int n;
-    cin >> n;
+    int n,m;
+    cin >> n>>m;;
     vector < pair<int, int>> arr;
     for (int i = 0; i < n; i++)
     {
@@ -136,6 +136,24 @@ void solve()
         if(x>y)
         ans++;
     }
-    cout<<ans+1;
+    int res=ans+1;
+    
+    while(m--){
+        int a,b;
+        cin>>a>>b;
+        a--;
+        b--;
+        
+
+        
+
+
+
+    }
+
+
+
+
+
 
 }

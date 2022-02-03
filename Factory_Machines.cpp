@@ -119,45 +119,39 @@ int main()
 }
 void solve()
 {
-    int n;
-    cin >> n;
-    // vector<pair<int,int>> arr;
-    // vector<int> brr(n,0);
-    // for(int i=0;i<n;i++)
-    // cin>>brr[i];
-    // reverse(brr.begin(),brr.end());
-    // set<int> s;
-    // for(int i=0;i<n;i++){
-    // arr.push_back(mp(brr[i],i));
-    // s.insert(arr[i]);
-
-    // }
-    // sort(arr.begin(),arr.end());
-    // ll c=0;
-    // for(int i=0;i<n-1;i++){
-    //     // if(arr[i].first==arr[i+1].first)
-    //     // c++;
-    //     if(!(arr[i].second<arr[i+1].second))
-    //     c++;
-    // }
-    // cout<<c+1;
-    vector<int> arr;
-    multiset<int> s;
-    int t;
-    cin >> t;
-    s.insert(t);
-    for (int i = 1; i < n; i++)
+    ll n, k;
+    cin >> n >> k;
+    vector<ll> arr(n, 0);
+    for (ll i = 0; i < n; i++)
+        cin >> arr[i];
+    sort(arr.begin(),arr.end());
+    ll l = 1, r = INF;
+    while (l < r)
     {
-        int a;
-        cin >> a;
-        arr.push_back(a);
-        if (s.upper_bound(a) == s.end())
-            s.insert(a);
+        ll mid = (l + r) / 2;
+        ll sum = 0;
+        for (ll i = 0; i < n; i++)
+        {
+            sum += (mid / arr[i]);
+            if(sum>INT_MAX)
+            break;
+        }
+        if (sum >= k)
+        {
+            r = mid-1;
+        }
         else
         {
-            s.erase(s.upper_bound(a));
-            s.insert(a);
+            l = mid+1;
         }
     }
-    cout << s.size();
+    ll sum1=0;
+    for(ll i=0;i<n;i++)
+    sum1+=(l/arr[i]);
+
+
+    if(sum1>=k)
+    cout<<l;
+    else
+    cout << l+1 << "\n";
 }

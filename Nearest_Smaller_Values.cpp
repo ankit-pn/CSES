@@ -59,31 +59,50 @@ fastio();
 void solve(){
         int n;
         cin>>n;
-        vector<int> arr(n,0);
-        vector<int> ans(n,0);
-        for(int i=0;i<n;i++)
-        cin>>arr[i];
-        // cout<<0<<" ";
-        for(int i=1;i<n;i++){
-            if(arr[i]==arr[i-1])
-            ans[i]=ans[i-1];
-            else if(arr[i]>arr[i-1])
-            ans[i]=i;
-            else {
-                for(int j=i-1;j>=0;j--){
-                    if(arr[i]==arr[j]){
-                    ans[i]=ans[j];
-                    break;
-                    }
-                    else if(arr[i]>arr[j]){
-                    ans[i]=j+1;
-                    break;
-                    }
-                }
-
-            }
+        vector<pair<int,int>> arr;
+        // vector<int> ans(n,0);
+        stack<pair<int,int>> s;
+        for(int i=0;i<n;i++){
+            int a;
+            cin>>a;
+            arr.push_back(mp(a,i));
         }
-        for(auto it : ans)
-        cout<<it<<" ";
+        // // cout<<0<<" ";
+        // s.push(arr[0]);
+        for(int i=0;i<n;i++){
+            while(!s.empty() && s.top().first>=arr[i].first ){
+                s.pop();
+            }
+            if(!s.empty()){
+                cout<<s.top().second+1<<" ";
+            }
+            else
+            cout<<0<<" ";
+            s.push(arr[i]);
+        //     if(s.top().first<arr[i].first){
+        //         cout<<s.top().second+1<<" ";
+        //     s.push(arr[i]);
+        //     }
+
+        // // 6 5 4
+
+
+        //     else{
+        //         int f=0;
+        //         while(!s.empty() ||){
+        //             if(f==0 &&  s.top().first<arr[i].first){
+        //                 cout<<s.top.first();
+        //             }
+
+        //         }
+        //         s.pop();
+        //         if(s.empty())
+        //         cout<<0<<" ";
+        //         else
+        //         cout<<s.top().second+1<<" ";
+        //         s.empty();
+        //         s.push(arr[i]);
+        //     }
+        }
 }
 

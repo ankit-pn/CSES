@@ -57,31 +57,39 @@ fastio();
      solve() ;  
 }
 void solve(){
-        int n,k;
+        ll n,k;
         cin>>n>>k;
-        vector<int> arr(n,0);
-        for(int i=0;i<n;i++)
+        vector<ll> arr(n,0);
+        for(ll i=0;i<n;i++)
         cin>>arr[i];
         vector<ll> pre(n,0);
         pre[0]=arr[0];
-        for(int i=1;i<n;i++)
+        for(ll i=1;i<n;i++)
         pre[i]=arr[i]+pre[i-1];
         ll c=0;
-        for(int i=0;i<n-1;i++){
-            int search=k+arr[i];
-            int l=i+1,r=n-1;
+        for(ll i=-1;i<n;i++){
+            // if(pre[i]==k){
+            //     c++;
+            //     continue;
+            // }
+            ll search;
+            if(i==-1)
+            search=k;
+            else
+            search=k+pre[i];
+            ll l=0,r=n-1;
             ll f=0;
-            while(l<r){
+            while(l<=r && f==0){
                 ll mi=(l+r)/2;
                 ll mid=pre[mi];
                 if(mid==search){
                     f=1;
                 }
                 else if(mid>search){
-                    r=mid-1;
+                    r=mi-1;
                 }
                 else
-                l=mid+1;
+                l=mi+1;
             }
             if(f==1){
                 c++;
